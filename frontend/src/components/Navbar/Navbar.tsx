@@ -25,6 +25,7 @@ function Navbar() {
     <header>
       <div className="container">
         <h1
+          className="home-logo"
           onClick={() => {
             navigate("/");
           }}

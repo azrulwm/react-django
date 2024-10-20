@@ -7,6 +7,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "./constant";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar/Navbar";
+import Post from "./pages/Post";
 
 function RegisterAndLogout() {
   Cookies.remove(ACCESS_TOKEN);
@@ -28,6 +29,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegisterAndLogout />} />
+        <Route path="/post/:id" element={<Post />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

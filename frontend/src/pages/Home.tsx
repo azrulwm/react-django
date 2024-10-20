@@ -1,18 +1,11 @@
 import { useEffect, useState } from "react";
 import api from "../api";
+import { Link } from "react-router-dom";
+import { Post } from "./Post";
 
 interface FormData {
   title: string;
   content: string;
-}
-
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-  author_username: string;
-  updated_at: Date;
-  comments: unknown[];
 }
 
 function Home() {
@@ -117,7 +110,7 @@ function Home() {
 
   return (
     <div className="pages">
-      <h1>Posts</h1>
+      <h1>Howdy ARBA people? Checkout the latest Posts on the board!</h1>
 
       <button
         onClick={() => {
@@ -167,16 +160,18 @@ function Home() {
 
       {postList.map((post) => (
         <div key={post.id} className="post">
-          <h2>{post.title}</h2>
-          <p className="post-content">{post.content}</p>
-          <div className="post-meta">
-            <p>Author: {post.author_username}</p>
-            <p>Updated at: {new Date(post.updated_at).toLocaleString()}</p>
-            <p>
-              {post.comments.length}
-              {post.comments.length <= 1 ? " comment" : " comments"}
-            </p>
-          </div>
+          <Link to={`/post/${post.id}`} className="post-link">
+            <h2>{post.title}</h2>
+            <p className="post-content">{post.content}</p>
+            <div className="post-meta">
+              <p>Author: {post.author_username}</p>
+              <p>Updated at: {new Date(post.updated_at).toLocaleString()}</p>
+              <p>
+                {post.comments.length}
+                {post.comments.length <= 1 ? " comment" : " comments"}
+              </p>
+            </div>
+          </Link>
           {post.author_username === currentUsername && (
             <>
               <button onClick={() => handleEditClick(post)}>Edit</button>
