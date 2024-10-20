@@ -1,37 +1,42 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics
-from .serializer import UserSerializer, PostSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.response import Response
 from .models import Post
+from .serializer import UserSerializer, PostSerializer
 
-
-class ListCreatePost(generics.ListCreateAPIView):
+class ListCreatePostView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        user = self.request.user
-        return Post.objects.filter(author=user)
+        return Post.objects.all().order_by('-updated_at')
 
     def perform_create(self, serializer):
-        if serializer.is_valid():
-            serializer.save(author=self.request.user)
-        else:
-            print(serializer.error)
-        return
+        serializer.save(author=self.request.user)
 
-
-class DeletePost(generics.DestroyAPIView):
+class UpdatePostView(generics.UpdateAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        user = self.request.user
-        return Post.objects.filter(author=user)
+        return Post.objects.filter(author=self.request.user)
 
+class DeletePostView(generics.DestroyAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Post.objects.filter(author=self.request.user)
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+
+class CurrentUserView(generics.GenericAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
