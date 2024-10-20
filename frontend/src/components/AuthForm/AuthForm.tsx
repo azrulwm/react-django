@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constant";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { isUserLoggedIn } from "../../util";
 
 interface AuthFormProps {
   mode: "register" | "login";
@@ -23,6 +24,9 @@ function AuthForm({ mode }: AuthFormProps) {
 
   const navigate = useNavigate();
 
+  if (isUserLoggedIn()) {
+    return (window.location.href = "/");
+  }
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({

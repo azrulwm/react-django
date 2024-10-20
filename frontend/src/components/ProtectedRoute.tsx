@@ -20,7 +20,7 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
   const refreshToken = async () => {
     const refreshToken = Cookies.get(REFRESH_TOKEN);
     try {
-      const response = await api.post("/api/token/refresh", {
+      const response = await api.post("/api/token/refresh/", {
         refresh: refreshToken,
       });
 
