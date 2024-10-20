@@ -4,14 +4,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cookies from "js-cookie";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "./constant";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
-
-function Logout() {
-  Cookies.remove(ACCESS_TOKEN);
-  Cookies.remove(REFRESH_TOKEN);
-  return <Navigate to="/login" />;
-}
+import Navbar from "./components/Navbar/Navbar";
 
 function RegisterAndLogout() {
   Cookies.remove(ACCESS_TOKEN);
@@ -21,6 +16,7 @@ function RegisterAndLogout() {
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route
           path="/"
