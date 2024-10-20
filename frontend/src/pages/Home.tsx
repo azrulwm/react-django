@@ -11,7 +11,7 @@ interface Post {
   title: string;
   content: string;
   author_username: string;
-  created_at: Date;
+  updated_at: Date;
 }
 
 function Home() {
@@ -115,8 +115,8 @@ function Home() {
   };
 
   return (
-    <div className="container">
-      <h1>Post</h1>
+    <div className="pages">
+      <h1>Posts</h1>
 
       <button
         onClick={() => {
@@ -129,7 +129,7 @@ function Home() {
       </button>
 
       {isFormVisible && editingPostId === null && (
-        <form className="auth-form" onSubmit={createOrUpdatePost}>
+        <form className="post-form" onSubmit={createOrUpdatePost}>
           <div className="form-group">
             <label htmlFor="title" className="form-label">
               Title
@@ -166,20 +166,32 @@ function Home() {
 
       {postList.map((post) => (
         <div key={post.id} className="post">
-          <h2>{post.id}</h2>
           <h2>{post.title}</h2>
-          <p>{post.content}</p>
-          <p>Author: {post.author_username}</p>
-          <p>Created at: {new Date(post.created_at).toLocaleString()}</p>
+          <p className="post-content">{post.content}</p>
+          <div className="post-meta">
+            <p>Author: {post.author_username}</p>
+            <p>Updated at: {new Date(post.updated_at).toLocaleString()}</p>
+          </div>
           {post.author_username === currentUsername && (
             <>
               <button onClick={() => handleEditClick(post)}>Edit</button>
-              <button onClick={() => deletePost(post.id)}>Delete</button>
+              <button
+                className="delete-button"
+                onClick={() => {
+                  if (
+                    window.confirm("Are you sure you want to delete this post?")
+                  ) {
+                    deletePost(post.id);
+                  }
+                }}
+              >
+                Delete
+              </button>
             </>
           )}
 
           {editingPostId === post.id && (
-            <form className="auth-form" onSubmit={createOrUpdatePost}>
+            <form className="post-form" onSubmit={createOrUpdatePost}>
               <div className="form-group">
                 <label htmlFor="title" className="form-label">
                   Title
@@ -208,12 +220,12 @@ function Home() {
                   required
                 />
               </div>
-              <button type="submit" className="form-button">
+              <button type="submit" className="post-button">
                 Update Post
               </button>
               <button
                 type="button"
-                className="form-button"
+                className="post-button"
                 onClick={handleCancelEdit}
               >
                 Cancel

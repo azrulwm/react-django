@@ -3,7 +3,7 @@
 
 /* layout */
 :root {
-  --primary: #1aac83;
+  --primary: #1a9975;
   --error: #e7195a;
 }
 body {
@@ -27,47 +27,11 @@ header a {
   text-decoration: none;
 }
 .pages {
-  max-width: 1400px;
+  max-width: 600px;
   padding: 20px;
   margin: 0 auto;
 }
 
-/* homepage */
-.home {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 100px;
-}
-.workout-details {
-  background: #fff;
-  border-radius: 4px;
-  margin: 20px auto;
-  padding: 20px;
-  position: relative;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
-}
-.workout-details h4 {
-  margin: 0 0 10px 0;
-  font-size: 1.2em;
-  color: var(--primary);
-}
-.workout-details p {
-  margin: 0;
-  font-size: 0.9em;
-  color: #555;
-}
-.workout-details span {
-  /* position: absolute; */
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  background: #f1f1f1;
-  padding: 6px;
-  border-radius: 50%;
-  color: #333;
-}
-
-/* new workout form */
 label,
 input {
   display: block;
@@ -81,8 +45,11 @@ input {
   border-radius: 4px;
   box-sizing: border-box;
 }
-form button {
+form button,
+button {
   background: var(--primary);
+  margin-bottom: 10px;
+  margin-right: 5px;
   border: 0;
   color: #fff;
   padding: 10px;
@@ -90,20 +57,15 @@ form button {
   border-radius: 4px;
   cursor: pointer;
 }
-div.error {
-  padding: 10px;
-  background: #ffefef;
-  border: 1px solid var(--error);
-  color: var(--error);
-  border-radius: 4px;
-  margin: 20px 0;
+
+button.delete-button {
+  background: rgb(235, 83, 83);
 }
 
-input.error {
-  border: 1px solid var(--error);
+button.delete-button:hover {
+  background: rgb(225, 45, 45);
 }
 
-/* navbar */
 nav div {
   display: flex;
   align-items: center;
@@ -125,12 +87,81 @@ nav button {
   margin-left: 10px;
 }
 
-/* auth forms */
-form.signup,
-form.login {
-  max-width: 400px;
-  margin: 40px auto;
+.post-form,
+.auth-form {
+  max-width: 600px;
+  margin: 20px auto;
   padding: 20px;
   background: #fff;
   border-radius: 4px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-input {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.post-content {
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.post-meta {
+  font-size: 0.7em;
+  color: #777;
+  margin-top: 10px;
+}
+
+.post-button {
+  background: rgb(111, 174, 189);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.post-button:hover {
+  background: rgb(114, 194, 216);
+}
+
+.post {
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid var(--primary);
+}
+
+.post h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.5em;
+  color: var(--primary);
+}
+
+.post p {
+  margin: 0;
+  font-size: 1.1em;
+  color: #333;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Poppins", sans-serif;
 }
