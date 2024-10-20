@@ -12,6 +12,7 @@ interface Post {
   content: string;
   author_username: string;
   updated_at: Date;
+  comments: unknown[];
 }
 
 function Home() {
@@ -171,6 +172,10 @@ function Home() {
           <div className="post-meta">
             <p>Author: {post.author_username}</p>
             <p>Updated at: {new Date(post.updated_at).toLocaleString()}</p>
+            <p>
+              {post.comments.length}
+              {post.comments.length <= 1 ? " comment" : " comments"}
+            </p>
           </div>
           {post.author_username === currentUsername && (
             <>
