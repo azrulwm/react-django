@@ -183,3 +183,32 @@ nav button {
   background-color: #edf5f3;
   transition: 0.5s;
 }
+
+.post.pages {
+  margin-top: 30px;
+}
+
+.comment-wrapper {
+  margin-top: 10px;
+  background-color: #f0ecec;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.comment-content {
+  flex-grow: 1;
+}
+.comment-button {
+  min-width: 120px;
+}
+.comment-wrapper .comment-author {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+.comment-wrapper p {
+  font-size: 0.9rem;
+}

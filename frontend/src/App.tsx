@@ -27,9 +27,16 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/post/:id"
+          element={
+            <ProtectedRoute>
+              <Post />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegisterAndLogout />} />
-        <Route path="/post/:id" element={<Post />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

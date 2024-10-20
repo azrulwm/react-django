@@ -30,7 +30,7 @@ function Navbar() {
             navigate("/");
           }}
         >
-          ARBA's Blog
+          ARBA's Shoutout!
         </h1>
         <nav>
           {isAuthorized && (

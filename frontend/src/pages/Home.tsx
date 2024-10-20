@@ -3,7 +3,7 @@ import api from "../api";
 import { Link } from "react-router-dom";
 import { Post } from "./Post";
 
-interface FormData {
+export interface FormData {
   title: string;
   content: string;
 }
@@ -110,7 +110,7 @@ function Home() {
 
   return (
     <div className="pages">
-      <h1>Howdy ARBA people? Checkout the latest Posts on the board!</h1>
+      <h1>Howdy ARBA people? Checkout the latest Shoutout on the board!</h1>
 
       <button
         onClick={() => {
