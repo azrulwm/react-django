@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constant";
 import { isUserLoggedIn } from "../../util";
 import { useEffect, useState } from "react";
@@ -15,8 +14,8 @@ function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    Cookies.remove(ACCESS_TOKEN);
-    Cookies.remove(REFRESH_TOKEN);
+    localStorage.removeItem(ACCESS_TOKEN);
+    localStorage.removeItem(REFRESH_TOKEN);
     setIsAuthorized(false);
     return navigate("/login");
   };

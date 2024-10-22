@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./authForm.css";
 import api from "../../api";
-import Cookies from "js-cookie";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constant";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -54,18 +53,8 @@ function AuthForm({ mode }: AuthFormProps) {
         }
       } else {
         const response = await api.post("api/token/", { username, password });
-        Cookies.set(ACCESS_TOKEN, response.data.access, {
-          expires: new Date(new Date().getTime() + 30 * 60 * 1000),
-          path: "/",
-          secure: false,
-          sameSite: "None",
-        });
-        Cookies.set(REFRESH_TOKEN, response.data.refresh, {
-          expires: 7,
-          path: "/",
-          secure: false,
-          sameSite: "None",
-        });
+        localStorage.setItem(ACCESS_TOKEN, response.data.access);
+        localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
 
         window.location.href = "/";
       }
