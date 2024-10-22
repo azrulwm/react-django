@@ -57,14 +57,14 @@ function AuthForm({ mode }: AuthFormProps) {
         Cookies.set(ACCESS_TOKEN, response.data.access, {
           expires: new Date(new Date().getTime() + 30 * 60 * 1000),
           path: "/",
-          secure: true,
-          sameSite: "Strict",
+          secure: false,
+          sameSite: "None",
         });
         Cookies.set(REFRESH_TOKEN, response.data.refresh, {
           expires: 7,
           path: "/",
-          secure: true,
-          sameSite: "Strict",
+          secure: false,
+          sameSite: "None",
         });
 
         window.location.href = "/";
