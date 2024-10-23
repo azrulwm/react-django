@@ -92,6 +92,21 @@ nav button {
   margin-left: 10px;
 }
 
+/* Styles for mobile view */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.25rem;
+  }
+  nav h2 {
+    font-size: 1rem;
+    margin-left: 0;
+  }
+
+  nav button {
+    font-size: 0.8em;
+  }
+}
+
 .post-form,
 .auth-form {
   max-width: 600px;
